@@ -10,8 +10,8 @@ const Navbar = () => {
    
 <nav class="bg-blue-900 border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <a href="https://flowbite.com/" class="flex items-center">
-      {/* <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Logo" /> */}
+  <a href="#" class="flex items-center">
+       <img src="https://scontent.faly8-2.fna.fbcdn.net/v/t1.6435-9/116887083_3312496638796785_1690796000580401029_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGObKzEYiWmYicQkHMfx_ITJ32ndRWcWX0nfad1FZxZfS-EvhQb30BYFsQRAd3xzMjB-20wTAitKqSDQKeulLMl&_nc_ohc=lRGkNXQ17awAX9kUFzF&_nc_ht=scontent.faly8-2.fna&oh=00_AfB7blEMwDpYqNEKnuGUkx9zrOiTdil54fAFzr5m0XBtxw&oe=64F24A1D" class="h-8 mx-3 rounded-full" alt="Logo" /> 
       <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">أ / سيد سحلي</span>
   </a>
   <div class="flex items-center md:order-2" >

@@ -4,6 +4,10 @@ $lightGreen: #b9e7e7;
   position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 58.4px, 0px);
 }
 
+.hiddenn {
+  display: none;
+}
+
 //Transition
 [data-aos^=fade][data-aos^=fade].aos-animate {
     opacity: 1;
