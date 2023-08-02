@@ -15,6 +15,7 @@ import "./index.css";
 import "./styles.scss";
 import AllLetrature from "./pages/AllLetrature";
 import AllLessons from "./pages/AllLessons";
+
 const Layout = () => {
   return (
     <>
