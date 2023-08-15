@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-
-
+import React, { useEffect, useState, useContext } from 'react'
+import { Link , useNavigate} from 'react-router-dom';
+import axios from "axios";
+import { AuthContext } from "../context/authContext";
 
 const Navbar = () => {
+  const [students,setStudents] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
+  const navigate = useNavigate();
+  const { currentUser, logout } = useContext(AuthContext);
+  useEffect(()=>{
+    const getStudents = async () =>{
+      try{
+      const studentsFromServer = await axios.get("http://localhost:8800/students")
+      console.log(studentsFromServer)
+      setStudents(studentsFromServer)
+    }catch(err){
+      console.log(err);
+    }
+  }
+    getStudents()
+  },[])
+
   return (
    
 <nav class="bg-blue-900 border-gray-200 dark:bg-gray-900">
@@ -22,7 +38,7 @@ const Navbar = () => {
       {toggle2?(
         <div class="z-50  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown" >
         <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900 dark:text-white">محمد هدهود</span>
+          <span class="block text-sm text-gray-900 dark:text-white">{currentUser?.username}</span>
           <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">hadhoud@gmail.com</span>
         </div>
         <ul class="py-2" aria-labelledby="user-menu-button">
@@ -35,9 +51,11 @@ const Navbar = () => {
           <li>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
           </li>
+          {currentUser ? (
           <li>
-            <a href="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            <span onClick={()=>{logout(); navigate("/login");}} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</span>
           </li>
+          ):null}
         </ul>
       </div>
 
