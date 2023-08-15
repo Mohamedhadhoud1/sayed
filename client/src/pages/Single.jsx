@@ -12,7 +12,7 @@ const post =
 const Single = (props) => {
   return (
     <>
-    <div className='text-center m-10 bg-red-600'>
+    <div className='text-center m-10'>
       <img src={`${post.img}`} class="w-96 h-96 m-auto" alt="lessonimg" />
       <h2>{post.title}</h2>
       <p>{post.desc}</p>
