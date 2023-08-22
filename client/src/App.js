@@ -36,25 +36,46 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/post",
-        element: <AllLessons/>,
+        path: "/قراءة",
+        element: <AllLessons title="القرءة"/>,
       },
       {
-        path: "/letrature",
-        element: <AllLetrature/>,
+        path: "/نصوص",
+        element: <AllLessons title="النصوص"/>,
       },
       {
-        path: "/post/:title",
+        path: "/أدب",
+        element: <AllLessons title="الأدب"/>,
+      },
+      {
+        path: "/بلاغة",
+        element: <AllLessons title="البلاغة"/>,
+      },
+      {
+        path: "/نحو",
+        element: <AllLessons title="النحو"/>,
+      },
+      {
+        path: "/قراءة/:title",
         element: <Single  lessontitle="شرح الدرس"/>,
       },
       {
-        path: "/letrature/:title",
+        path: "/نصوص/:title",
         element: <Single  lessontitle="شرح النص"/>,
       },
       {
-        path: "/write",
-        element: <Write />,
+        path: "/أدب/:title",
+        element: <Single  lessontitle="شرح الأدب"/>,
       },
+      {
+        path: "/بلاغة/:title",
+        element: <Single  lessontitle="شرح البلاغة"/>,
+      },
+      {
+        path: "/نحو/:title",
+        element: <Single  lessontitle="شرح النحو"/>,
+      },
+     
     ],
   },
   {

@@ -42,14 +42,14 @@ const posts = [
   
 ];
 
-const AllLessons = () => {
+const AllLessons = (props) => {
   return (
     <>
     <section id="popular-courses " class="courses my-20 mx-3  sm:mx-32">
          <div class="aos-init aos-animate  " data-aos="fade-up">
  
              <div class=" pb-5 text-center">
-                 <h2 class="text-gray-400 border-b-2 border-orange-300 pb-5">القراءة</h2>
+                 <h2 class="text-gray-400 border-b-2 border-orange-300 pb-5">{props.title}</h2>
                  <p class="font-bold text-2xl mb-3 pt-5"> كل الدروس </p>
              </div>
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-12 w-full aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
