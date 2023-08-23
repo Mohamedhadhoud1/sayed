@@ -4,11 +4,13 @@ import axios from "axios";
 import { AuthContext } from "../context/authContext";
 
 const Navbar = () => {
+  
   const [students,setStudents] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const navigate = useNavigate();
   const { currentUser, logout } = useContext(AuthContext);
+console.log(currentUser);
   useEffect(()=>{
     const getStudents = async () =>{
       try{
@@ -33,13 +35,13 @@ const Navbar = () => {
   <div class="flex items-center md:order-2" >
       <button type="button"onClick={(e) => setToggle2(!toggle2)}  class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span class="sr-only">Open user menu</span>
-        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"/>
+        <img class="w-8 h-8 rounded-full" src={currentUser?.img} alt="user photo"/>
       </button>
       {toggle2?(
         <div class="z-50  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown" >
         <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900 dark:text-white">{currentUser?.username}</span>
-          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">hadhoud@gmail.com</span>
+          <span class="block text-sm text-gray-900 dark:text-white">{currentUser==null?"No User":currentUser?.userName}</span>
+          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{currentUser?.email}</span>
         </div>
         <ul class="py-2" aria-labelledby="user-menu-button">
           <li>
@@ -55,7 +57,7 @@ const Navbar = () => {
           <li>
             <span onClick={()=>{logout(); navigate("/login");}} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</span>
           </li>
-          ):null}
+          ):<Link to="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</Link>}
         </ul>
       </div>
 
@@ -90,6 +92,9 @@ const Navbar = () => {
         <Link to="نحو" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">النحو</Link>
       </li>
       <li>
+        <Link to="قصة" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">القصة</Link>
+      </li>
+      <li>
         <a href="#footer" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">تواصل معنا</a>
       </li>
     </ul>
@@ -97,17 +102,26 @@ const Navbar = () => {
   {toggle ? (
     <div class="items-center justify-between  w-full md:flex md:w-auto md:order-1" id="-user">
     <ul class="flex flex-col  font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-blue-900 md:flex-row md:gap-x-8 md:mt-0 md:border-0 md:bg-blue-900 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-      <li>
-        <Link to="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-100 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">الرئيسية</Link>
+    <li>
+        <Link to="/" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-100 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">الرئيسية</Link>
       </li>
       <li>
-        <Link to="/post" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">القراءة</Link>
+        <Link to="/قراءة" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">القراءة</Link>
       </li>
       <li>
-        <Link to="/letrature" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">النصوص</Link>
+        <Link to="/نصوص" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">النصوص</Link>
       </li>
       <li>
-        <Link href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">الأدب</Link>
+        <Link to="أدب" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">الأدب</Link>
+      </li>
+      <li>
+        <Link to="بلاغة" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">البلاغة</Link>
+      </li>
+      <li>
+        <Link to="نحو" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">النحو</Link>
+      </li>
+      <li>
+        <Link to="قصة" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">القصة</Link>
       </li>
       <li>
         <a href="#footer" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">تواصل معنا</a>

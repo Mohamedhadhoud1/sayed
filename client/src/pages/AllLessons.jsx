@@ -1,48 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
-const posts = [
-  {
-    id: 1,
-    title: "درس كذا كذا",
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-    img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
-  {
-    id: 2,
+import { AuthContext } from "../context/authContext";
+import axios from "axios";
+// const posts = [
+//   {
+//     id: 1,
+//     title: "درس كذا كذا",
+//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
+//   {
+//     id: 2,
    
-    title: "درس كذا كذا",
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-    img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
-  {
-    id: 3,
-    title: "درس كذا كذا",
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-    img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
-{
-  id: 1,
-  title: "درس كذا كذا",
-  desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-  img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
-{
-  id: 2,
+//     title: "درس كذا كذا",
+//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
+//   {
+//     id: 3,
+//     title: "درس كذا كذا",
+//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
+// {
+//   id: 1,
+//   title: "درس كذا كذا",
+//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
+// {
+//   id: 2,
  
-  title: "درس كذا كذا",
-  desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-  img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
-{
-  id: 3,
-  title: "درس كذا كذا",
-  desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-  img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-},
+//   title: "درس كذا كذا",
+//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
+// {
+//   id: 3,
+//   title: "درس كذا كذا",
+//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
+//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+// },
   
-];
+// ];
 
 const AllLessons = (props) => {
+  const [posts, setPosts] = useState([]);
+
+
+  const { currentUser, logout } = useContext(AuthContext);
+  const grade = currentUser.grade;
+  console.log(grade);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8800/api/lessons`, {params: { grade: grade }});
+        setPosts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [grade]);
   return (
     <>
     <section id="popular-courses " class="courses my-20 mx-3  sm:mx-32">
@@ -72,7 +91,7 @@ const AllLessons = (props) => {
              </div>
              <div class="flex justify-between content-center align-middle items-stretch">
                      <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
-                     <Link className="link" to={`/post/${post.title}`}>
+                     <Link className="link" to={`/${props.title}/${post.id}`}>
              <h1>المزيد</h1>
            </Link></h4>
                  </div>

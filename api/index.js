@@ -2,6 +2,7 @@ import  express  from "express";
 import mysql from "mysql";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
+import lessonsRoutes from "./routes/lessons.js"
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -18,7 +19,7 @@ app.use(cors())
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
-
+app.use("/api/lessons", lessonsRoutes);
 /*
 //GET
 

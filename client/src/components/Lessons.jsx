@@ -58,7 +58,7 @@ const Lessons = (props) => {
           
             <div class="flex justify-between content-center align-middle items-stretch">
                     <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
-                    <Link className="link" to={`/${props.link}/${post.title}`}>
+                    <Link className="link" to={`/${props.link}/${post.id}`}>
             <h1>المزيد</h1>
           </Link></h4>
                 </div>
