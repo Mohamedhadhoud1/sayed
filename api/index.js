@@ -3,6 +3,8 @@ import mysql from "mysql";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import lessonsRoutes from "./routes/lessons.js"
+import letratureRoutes from "./routes/letrature.js"
+import letRoutes from "./routes/let.js"
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -20,6 +22,8 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/lessons", lessonsRoutes);
+app.use("/api/letrature", letratureRoutes);
+app.use("/api/let", letRoutes);
 /*
 //GET
 

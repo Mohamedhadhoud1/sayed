@@ -15,6 +15,8 @@ import "./index.css";
 import "./styles.scss";
 import AllLetrature from "./pages/AllLetrature";
 import AllLessons from "./pages/AllLessons";
+import Admin from "./pages/Admin";
+import AdminNew from "./pages/AdminNew";
 
 const Layout = () => {
   return (
@@ -37,15 +39,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/قراءة",
-        element: <AllLessons title="القراءة"/>,
+        element: <AllLessons title="القراءة" api="lessons"/>,
       },
       {
         path: "/نصوص",
-        element: <AllLessons title="النصوص"/>,
+        element: <AllLessons title="النصوص" api="letrature"/>,
       },
       {
         path: "/أدب",
-        element: <AllLessons title="الأدب"/>,
+        element: <AllLessons title="الأدب" api="let"/>,
       },
       {
         path: "/بلاغة",
@@ -61,15 +63,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/القراءة/:id",
-        element: <Single  lessontitle="شرح الدرس"/>,
+        element: <Single  lessontitle="شرح الدرس" api="lessons"/>,
       },
       {
         path: "/النصوص/:id",
-        element: <Single  lessontitle="شرح النص"/>,
+        element: <Single  lessontitle="شرح النص" api="letrature"/>,
       },
       {
         path: "/الأدب/:id",
-        element: <Single  lessontitle="شرح الأدب"/>,
+        element: <Single  lessontitle="شرح الأدب" api="let"/>,
       },
       {
         path: "/البلاغة/:id",
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
       {
         path: "/القصة/:id",
         element: <Single  lessontitle="شرح القصة"/>,
+      },
+      {
+        path: "/admin",
+        element: <Admin/>,
+      },
+      {
+        path: "/adminNew",
+        element: <AdminNew/>,
       },
      
     ],

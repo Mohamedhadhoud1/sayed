@@ -2,15 +2,15 @@ import express from "express";
 import {
   addPost,
   deletePost,
-  getletratures,
-  getletrature,
+  getlets,
+  getlet,
   updatePost,
-} from "../controllers/letrature.js";
+} from "../controllers/let.js";
 
 const router = express.Router();
 
-router.get("/", getletratures);
-router.get("/:id/:grade", getletrature);
+router.get("/", getlets);
+router.get("/:id/:grade", getlet);
 router.post("/", addPost);
 router.delete("/:id", deletePost);
 router.put("/:id", updatePost);

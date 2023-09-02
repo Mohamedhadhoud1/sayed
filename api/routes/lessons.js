@@ -2,7 +2,7 @@ import express from "express";
 import {
   addPost,
   deletePost,
-  getPost,
+  getlesson,
   getlessons,
   updatePost,
 } from "../controllers/lessons.js";
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/", getlessons);
-router.get("/:id", getPost);
+router.get("/:id/:grade", getlesson);
 router.post("/", addPost);
 router.delete("/:id", deletePost);
 router.put("/:id", updatePost);

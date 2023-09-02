@@ -54,14 +54,14 @@ const AllLessons = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/lessons`, {params: { grade: grade }});
+        const res = await axios.get(`http://localhost:8800/api/${props.api}`, {params: { grade: grade }});
         setPosts(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [grade]);
+  }, [grade,props.api]);
   return (
     <>
     <section id="popular-courses " class="courses my-20 mx-3  sm:mx-32">

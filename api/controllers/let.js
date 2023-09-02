@@ -2,9 +2,9 @@ import  db from "../db.js";
 import jwt from "jsonwebtoken";
 
 
-export const getlessons = (req, res) => {
+export const getlets = (req, res) => {
   const grade = req.query.grade;
-  const q = "SELECT * FROM lessons WHERE grade = ? "
+  const q = "SELECT * FROM let WHERE grade = ? "
    
   db.query(q, grade, (err, data) => {
     if (err) return res.status(500).send(err);
@@ -13,8 +13,8 @@ export const getlessons = (req, res) => {
   });
 };
 
-export const getlesson = (req, res) => {
-  const q = "SELECT * FROM lessons WHERE id = ? AND grade = ?"
+export const getlet = (req, res) => {
+  const q = "SELECT * FROM let WHERE id = ? AND grade = ?"
   db.query(q, [req.params.id,req.params.grade], (err, data) => {
     if (err) return res.status(500).json(err);
 
