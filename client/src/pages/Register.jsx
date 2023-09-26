@@ -24,7 +24,7 @@ const Register = () => {
         console.log("res");
         e.preventDefault();
         try {
-         const res= await axios.post("https://sayed.onrender.com/api/auth/register", inputs);
+         const res= await axios.post("https://sayed.onrender.com/api/auth/fakeRegister", inputs);
           navigate("/login");
           console.log(res);
         } catch (err) {

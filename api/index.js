@@ -2,9 +2,10 @@ import  express  from "express";
 import mysql from "mysql";
 import cors from "cors";
 import authRoutes from "./routes/auth.js";
-import lessonsRoutes from "./routes/lessons.js"
-import letratureRoutes from "./routes/letrature.js"
-import letRoutes from "./routes/let.js"
+import lessonsRoutes from "./routes/lessons.js";
+import letratureRoutes from "./routes/letrature.js";
+import letRoutes from "./routes/let.js";
+import studentsRoutes from "./routes/students.js";
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -16,14 +17,16 @@ const app = express()
    
 // })
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
-
+app.use("/api/students", studentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/lessons", lessonsRoutes);
 app.use("/api/letrature", letratureRoutes);
 app.use("/api/let", letRoutes);
+ 
+
 /*
 //GET
 

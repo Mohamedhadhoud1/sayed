@@ -20,6 +20,7 @@ import AdminNew from "./pages/AdminNew";
 import { AuthContext } from "./context/authContext";
 import React, { useEffect, useState, useContext } from 'react';
 import NotFound from "./pages/NotFound";
+import FakeStudents from "./pages/FakeStudents";
 
 
 const Layout = () => {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/adminNew",
         element: <AdminNew/>,
+      },
+      {
+        path: "/waitingStudents",
+        element: <FakeStudents/>,
       },
      
     ],

@@ -86,7 +86,7 @@ const AllLessons = (props) => {
     }
   }
   useEffect(() => {
-   if(currentUser.userName!="mohamed"){
+   if(currentUser.role!="1"){
     navigate("/");
    }
   },);
@@ -94,11 +94,22 @@ const AllLessons = (props) => {
   return (
     <>
      <div class="flex justify-between content-center align-middle items-stretch">
+                     <ul className='flex flex-row'>
+                    <li>
                      <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
                      <Link className="link" to="/AdminNew">
              <h1>أضف درس جديد</h1>
            </Link></h4>
+           </li>
+           <li>
+           <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
+                     <Link className="link" to="/waitingStudents">
+             <h1>طلبة قيد الإنتظار</h1>
+           </Link></h4>
+           </li>
+           </ul>
                  </div>
+                 
     <form class="space-y-4 md:space-y-6 md:w-1/2 mx-3" >
     <div>
                       <label for="grade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الصف</label>
