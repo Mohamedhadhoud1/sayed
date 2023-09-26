@@ -12,6 +12,16 @@ export const getStudents = (req, res) => {
     return res.status(200).json(data);
   });
 };
+export const getFakeStudents = (req, res) => {
+  
+  const q = "SELECT * FROM fakeStudents"
+   
+  db.query(q, (err, data) => {
+    if (err) return res.status(500).send(err);
+
+    return res.status(200).json(data);
+  });
+};
 
 export const getStudent = (req, res) => {
   const q = "SELECT * FROM students WHERE id = ?"

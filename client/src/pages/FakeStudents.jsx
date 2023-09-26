@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const FakeStudents = () => {
+    const [students,setStudents]=useState([]);
+    const [fakestudents,setFakeStudents]=useState([]);
+    useEffect(()=>{
+        const getStudents = async () =>{
+          try{
+          const studentsFromServer = await axios.get("https://sayed.onrender.com/api/students")
+            setStudents(res.data);
+        }
+        catch(err){
+          console.log(err);
+        }
+      }
+        getStudents()
+      },[])
+      useEffect(()=>{
+        const getFakeStudents = async () =>{
+          try{
+          const studentsFromServer = await axios.get("https://sayed.onrender.com/api/students/fake")
+            setFakeStudents(res.data);
+        }
+        catch(err){
+          console.log(err);
+        }
+      }
+        getStudents()
+      },[])
+    
   return (
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg ltr my-10 mx-20 mb-40">
