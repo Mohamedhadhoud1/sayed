@@ -8,13 +8,13 @@ import letRoutes from "./routes/let.js"
 import cookieParser from "cookie-parser";
 const app = express()
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user:"root",
-    password:"1234",
-    database:"sayed",
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user:"root",
+//     password:"1234",
+//     database:"sayed",
    
-})
+// })
 
 app.use(express.json())
 app.use(cors())

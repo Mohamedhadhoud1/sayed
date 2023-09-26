@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link ,useNavigate, useLocation} from 'react-router-dom';
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 // const posts = [
@@ -58,6 +58,10 @@ const AllLessons = (props) => {
     api:""
   });
   const navigate = useNavigate();
+  const location = useLocation();
+ 
+
+  const postId = location.pathname.split("/")[2];
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(inputs);
@@ -73,10 +77,10 @@ const AllLessons = (props) => {
         console.log(err);
       }
   };
-  const handleDelete = async ()=>{
+  const handleDelete = async (id)=>{
     try {
-      await axios.delete(`/posts/${postId}`);
-      navigate("/")
+      await axios.delete(`http://localhost:8800/api/lessons/${id}`);
+      //navigate("/")
     } catch (err) {
       console.log(err);
     }
@@ -156,12 +160,9 @@ const AllLessons = (props) => {
              <h1>تعديل</h1>
            </Link></h4>
                  </div>
-                 <div class="flex justify-between content-center align-middle items-stretch">
-                     <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
-                     <Link className="link" to={`/${props.title}/${post.id}`}>
-             <h1>حذف</h1>
-           </Link></h4>
-                 </div>
+                
+                     <button type="submit" onClick={()=>handleDelete(post.id)} class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">حذف</button>
+             
                  </div>
          </div>
      </div>
