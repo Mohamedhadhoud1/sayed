@@ -28,7 +28,7 @@ const Single = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/${props.api}/${postId}/${grade}`);
+        const res = await axios.get(`https://sayed.onrender.com/api/${props.api}/${postId}/${grade}`);
         setPost(res.data);
       } catch (err) {
         console.log(err);

@@ -9,13 +9,13 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("http://localhost:8800/api/auth/login", inputs);
+    const res = await axios.post("https://sayed.onrender.com/api/auth/login", inputs);
     setCurrentUser(res.data);
   };
 
   const logout = async (inputs) => {
     
-    await axios.post("http://localhost:8800/api/auth/logout");
+    await axios.post("https://sayed.onrender.com/api/auth/logout");
     setCurrentUser(null);
    
   };

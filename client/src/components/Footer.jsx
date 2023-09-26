@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Footer = () => {
+    const logo=require("../sayedlogo.jpg")
   return (
     
 <footer class="bg-gray-100 dark:bg-gray-900 ltr" id="footer">
@@ -8,7 +9,7 @@ const Footer = () => {
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
               <a href="#" class="flex items-center">
-                  <img src="https://scontent.faly8-2.fna.fbcdn.net/v/t1.6435-9/116887083_3312496638796785_1690796000580401029_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGObKzEYiWmYicQkHMfx_ITJ32ndRWcWX0nfad1FZxZfS-EvhQb30BYFsQRAd3xzMjB-20wTAitKqSDQKeulLMl&_nc_ohc=lRGkNXQ17awAX9kUFzF&_nc_ht=scontent.faly8-2.fna&oh=00_AfB7blEMwDpYqNEKnuGUkx9zrOiTdil54fAFzr5m0XBtxw&oe=64F24A1D" class="h-8 mr-3 rounded-full" alt="Logo" />
+                  <img src={logo} class="h-8 mr-3 rounded-full" alt="Logo" />
                   <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">أ / سيد سحلي</span>
               </a>
           </div>

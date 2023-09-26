@@ -71,7 +71,7 @@ const AllLessons = (props) => {
     console.log("res");
     e.preventDefault();
     try {
-        const res = await axios.get(`http://localhost:8800/api/${inputs.api}`, {params: { grade: inputs.grade }});
+        const res = await axios.get(`https://sayed.onrender.com/api/${inputs.api}`, {params: { grade: inputs.grade }});
         setPosts(res.data);
       } catch (err) {
         console.log(err);

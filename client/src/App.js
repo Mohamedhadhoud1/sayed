@@ -17,13 +17,20 @@ import AllLetrature from "./pages/AllLetrature";
 import AllLessons from "./pages/AllLessons";
 import Admin from "./pages/Admin";
 import AdminNew from "./pages/AdminNew";
+import { AuthContext } from "./context/authContext";
+import React, { useEffect, useState, useContext } from 'react';
+import NotFound from "./pages/NotFound";
+
 
 const Layout = () => {
+  const { currentUser, logout } = useContext(AuthContext);
   return (
     <>
+      
       <Navbar />
-      <Outlet />
+      { currentUser?( <Outlet />   ):<NotFound/>}
       <Footer />
+   
     </>
   );
 };
@@ -107,12 +114,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+ 
   return (
+   
     <div className="app">
       <div className="">
+    
         <RouterProvider router={router} />
+       
       </div>
     </div>
+  
   );
 }
 

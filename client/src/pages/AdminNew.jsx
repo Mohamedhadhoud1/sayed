@@ -26,7 +26,7 @@ const AdminNew = () => {
         console.log("res");
         e.preventDefault();
         try {
-         const res= await axios.post("http://localhost:8800/api/lessons", inputs);
+         const res= await axios.post("https://sayed.onrender.com/api/lessons", inputs);
           navigate("/Admin");
           console.log(res);
         } catch (err) {

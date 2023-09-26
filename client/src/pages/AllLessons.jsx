@@ -54,7 +54,7 @@ const AllLessons = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/${props.api}`, {params: { grade: grade }});
+        const res = await axios.get(`https://sayed.onrender.com/api/${props.api}`, {params: { grade: grade }});
         setPosts(res.data);
       } catch (err) {
         console.log(err);
