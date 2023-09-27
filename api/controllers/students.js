@@ -31,6 +31,14 @@ export const getStudent = (req, res) => {
     return res.status(200).json(data[0]);
   });
 };
+export const getFakeStudent = (req, res) => {
+  const q = "SELECT * FROM fakeStudents WHERE id = ?"
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.status(500).json(err);
+
+    return res.status(200).json(data[0]);
+  });
+};
 
 // export const addPost = (req, res) => {
 //   const token = req.cookies.access_token;
@@ -75,6 +83,24 @@ export const deleteStudent = (req, res) => {
     });
   
 };
+
+export const deleteFakeStudent = (req, res) => {
+  //   const token = req.cookies.access_token;
+  //   if (!token) return res.status(401).json("Not authenticated!");
+  
+  //   jwt.verify(token, "jwtkey", (err, userInfo) => {
+  //     if (err) return res.status(403).json("Token is not valid!");
+  
+      
+      const q = "DELETE FROM FakeStudents WHERE `id` = ?"
+  
+      db.query(q, [req.params.id], (err, data) => {
+        if (err) return res.status(403).json("Student Not Deleted!");
+  
+        return res.json("Student has been deleted!");
+      });
+    
+  };
 
 // export const updateStudent = (req, res) => {
 // //   const token = req.cookies.access_token;

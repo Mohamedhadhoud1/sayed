@@ -26,18 +26,14 @@ export const register = (req,res)=>{
 
 export const fakeRegister = (req,res)=>{
   //CHECK EXISTING USER
-  const q = "SELECT * FROM fakeStudents WHERE email = ? OR userName = ?";
+  const q = "SELECT * FROM fakeStudents WHERE email = ? OR username = ?";
  
   db.query(q, [req.body.email, req.body.userName], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length) return res.status(409).json("Student already exists!");
  
-    //Hash the password and create a user
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.password, salt);
- 
-    const q = "INSERT INTO students(`userName`,`email`,`password`,`grade`,`img`) VALUES (?)";
-    const values = [req.body.userName, req.body.email, hash,req.body.grade,req.body.img];
+    const q = "INSERT INTO fakeStudents(`username`,`email`,`password`,`grade`,`img`) VALUES (?)";
+    const values = [req.body.userName, req.body.email, req.body.password,req.body.grade,req.body.img];
  
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
