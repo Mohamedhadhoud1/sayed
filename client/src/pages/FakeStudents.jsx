@@ -31,7 +31,7 @@ const FakeStudents = () => {
     
       const handleFakeDelete = async (id)=>{
         try {
-          await axios.delete(`/fakeStudents/${id}`);
+          await axios.delete(`https://sayed.onrender.com/api/auth/students/fakeStudent/${id}`);
           //navigate("/")
         } catch (err) {
           console.log(err);
@@ -39,7 +39,7 @@ const FakeStudents = () => {
       }
       const handleDelete = async (id)=>{
         try {
-          await axios.delete(`/Students/${id}`);
+          await axios.delete(`https://sayed.onrender.com/api/auth/students/${id}`);
           //navigate("/")
         } catch (err) {
           console.log(err);
@@ -137,7 +137,7 @@ const FakeStudents = () => {
           {fakestudents.map((fakestudent)=>(
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {fakestudent.userName}
+                  {fakestudent.username}
               </th>
               <td class="px-6 py-4">
                   {fakestudent.email}
