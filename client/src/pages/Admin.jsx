@@ -66,20 +66,29 @@ const AllLessons = (props) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(inputs);
   };
-
-  const handleSubmit = async (e) => {
-    console.log("res");
+//   useEffect(()=>{
+  
+//   handleSubmit();
+// },[posts])
+const handleSubmit = async (e) => {
+  console.log("res");
+  if (e) {
     e.preventDefault();
-    try {
-        const res = await axios.get(`https://sayed.onrender.com/api/${inputs.api}`, {params: { grade: inputs.grade }});
-        setPosts(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-  };
+  }
+  try {
+      const res = await axios.get(`https://sayed.onrender.com/api/${inputs.api}`, {params: { grade: inputs.grade }});
+      setPosts(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+};
   const handleDelete = async (id)=>{
     try {
-      await axios.delete(`http://localhost:8800/api/lessons/${id}`);
+      await axios.delete(`https://sayed.onrender.com/api/${inputs.api}/${id}`);
+      const filtered =  posts.filter((posttodelete) => { 
+        return posttodelete.id !== id});
+        setPosts(filtered) 
       //navigate("/")
     } catch (err) {
       console.log(err);
@@ -105,6 +114,12 @@ const AllLessons = (props) => {
            <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
                      <Link className="link" to="/waitingStudents">
              <h1>طلبة قيد الإنتظار</h1>
+           </Link></h4>
+           </li>
+           <li>
+           <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
+                     <Link className="link" to="/meetings">
+             <h1>أضف اجتماع قادم</h1>
            </Link></h4>
            </li>
            </ul>
@@ -134,7 +149,7 @@ const AllLessons = (props) => {
                            <option value="eloquence">بلاغة </option>
                            <option value="story"> قصة </option>
                          </select></div>
-                         <button type="submit" onClick={handleSubmit} class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">عرض الدروس</button>
+                         <button type="submit" onClick={(e)=>handleSubmit(e)} class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">عرض الدروس</button>
                  
                   </form>
         
@@ -147,6 +162,7 @@ const AllLessons = (props) => {
              </div>
              {posts.length!=0 ?( 
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-12 w-full aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+    
      {posts.map((post) => (
          <div class="border-gray-100 bordert w-full shadow-sm rounded-sm"  key={post.id}>
          <div class="course-item">
@@ -172,7 +188,7 @@ const AllLessons = (props) => {
            </Link></h4>
                  </div>
                 
-                     <button type="submit" onClick={()=>handleDelete(post.id)} class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">حذف</button>
+                     <button type="submit" onClick={()=>handleDelete(post.id)} class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">حذف</button>
              
                  </div>
          </div>
@@ -181,7 +197,7 @@ const AllLessons = (props) => {
          
      ))}
    </div>
-    ):<p className='text-xl font-bold'>لا يوجد دروس</p>}   
+    ):<p className='text-xl font-bold text-red-600'>لا يوجد دروس</p>}   
    </div>
  
      </section>

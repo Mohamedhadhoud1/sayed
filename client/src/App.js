@@ -21,7 +21,7 @@ import { AuthContext } from "./context/authContext";
 import React, { useEffect, useState, useContext } from 'react';
 import NotFound from "./pages/NotFound";
 import FakeStudents from "./pages/FakeStudents";
-
+import Meetings from "./pages/Meetings";
 
 const Layout = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -104,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "/waitingStudents",
         element: <FakeStudents/>,
+      },
+      {
+        path: "/meetings",
+        element: <Meetings/>,
       },
      
     ],

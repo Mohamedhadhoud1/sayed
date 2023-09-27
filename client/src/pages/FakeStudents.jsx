@@ -12,6 +12,7 @@ const FakeStudents = () => {
         }
         catch(err){
           console.log(err);
+          alert(err.response.data)
         }
       }
         getStudents()
@@ -24,6 +25,7 @@ const FakeStudents = () => {
         }
         catch(err){
           console.log(err);
+          alert(err.response.data)
         }
       }
         getFakeStudents()
@@ -32,17 +34,19 @@ const FakeStudents = () => {
       const handleFakeDelete = async (id)=>{
         try {
           await axios.delete(`https://sayed.onrender.com/api/students/fakeStudent/${id}`);
-          //navigate("/")
+          alert("تم حذف الطالب بنجاح")
         } catch (err) {
           console.log(err);
+          alert(err.response.data)
         }
       }
       const handleDelete = async (id)=>{
         try {
           await axios.delete(`https://sayed.onrender.com/api/students/${id}`);
-          //navigate("/")
+          alert("تم حذف الطالب بنجاح")
         } catch (err) {
           console.log(err);
+          alert(err.response.data)
         }
       }
       const handleAdd = async (student)=>{
@@ -54,11 +58,11 @@ const FakeStudents = () => {
             grade:student.grade,
             img:student.img
           });
-            
+          alert("تم تأكيد الطالب بنجاح")
             console.log(res);
           } catch (err) {
             console.log(err.response.data);
-            
+            alert(err.response.data)
           }
       }
 
@@ -86,7 +90,7 @@ const FakeStudents = () => {
             </tr>
         </thead>
         <tbody>
-            {students.map((student)=>(
+            {students.filter(student => student.role != 1).map((student)=>(
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {student.userName}
