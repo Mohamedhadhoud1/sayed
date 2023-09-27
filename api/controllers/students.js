@@ -92,7 +92,7 @@ export const deleteFakeStudent = (req, res) => {
   //     if (err) return res.status(403).json("Token is not valid!");
   
       
-      const q = "DELETE FROM FakeStudents WHERE `id` = ?"
+      const q = "DELETE FROM fakeStudents WHERE `id` = ?"
   
       db.query(q, [req.params.id], (err, data) => {
         if (err) return res.status(403).json("Student Not Deleted!");
