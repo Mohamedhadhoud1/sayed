@@ -31,7 +31,7 @@ const FakeStudents = () => {
     
       const handleFakeDelete = async (id)=>{
         try {
-          await axios.delete(`https://sayed.onrender.com/api/auth/students/fakeStudent/${id}`);
+          await axios.delete(`https://sayed.onrender.com/api/students/fakeStudent/${id}`);
           //navigate("/")
         } catch (err) {
           console.log(err);
@@ -39,7 +39,7 @@ const FakeStudents = () => {
       }
       const handleDelete = async (id)=>{
         try {
-          await axios.delete(`https://sayed.onrender.com/api/auth/students/${id}`);
+          await axios.delete(`https://sayed.onrender.com/api/students/${id}`);
           //navigate("/")
         } catch (err) {
           console.log(err);
