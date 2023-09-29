@@ -40,7 +40,7 @@ const AdminNew = () => {
         e.preventDefault();
         if(location.state!=null){
           try {
-            const res= await axios.put(`https://sayed.onrender.com/api/${type}/${post.id}`, [inputs,post.id]);
+            const res= await axios.put(`https://sayed.onrender.com/api/${type}/${post.id}`, [inputs]);
              navigate("/Admin");
              console.log(res);
            } catch (err) {

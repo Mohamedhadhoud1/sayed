@@ -76,7 +76,7 @@ export const updatelesson = (req, res) => {
 
     
     const q =
-      "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = ?";
+      "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = 8";
 
       const values = [
         req.body.title,
