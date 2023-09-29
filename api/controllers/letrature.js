@@ -75,7 +75,7 @@ export const updateletrature = (req, res) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
   const q =
-  "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = ?";
+  "UPDATE letrature SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = ?";
 
   const values = [
     req.body.title,
