@@ -6,6 +6,7 @@ import { AuthContext } from "../context/authContext";
 const Navbar = () => {
   const logo=require("../sayedlogo.jpg")
   const [students,setStudents] = useState([]);
+  const [meetings,setMeetings] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const navigate = useNavigate();
@@ -22,6 +23,19 @@ console.log(currentUser?.role,"role");
     }
   }
     getStudents()
+  },[])
+
+  useEffect(()=>{
+    const getmeetings = async () =>{
+      try{
+      const res = await axios.get(`https://sayed.onrender.com/api/meetings/`,{params: { grade: currentUser.grade }})
+      console.log(res.data)
+      setMeetings(res.data)
+    }catch(err){
+      console.log(err);
+    }
+  }
+    getmeetings()
   },[])
 
   return (
@@ -45,7 +59,9 @@ console.log(currentUser?.role,"role");
         </div>
         <ul class="py-2" aria-labelledby="user-menu-button">
           <li>
-            <Link to="/meetingsCalender" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">الاجتماعات القادمة</Link>
+            <Link to="/meetingsCalender" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">الاجتماعات القادمة
+           <span className='bg-blue-600 rounded-full inline-block text-center w-5 h-5 mr-2 text-white'> {meetings.length}</span>
+            </Link>
           </li>
          
           {currentUser ? (

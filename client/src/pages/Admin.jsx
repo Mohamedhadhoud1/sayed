@@ -122,6 +122,12 @@ const handleSubmit = async (e) => {
              <h1>أضف اجتماع قادم</h1>
            </Link></h4>
            </li>
+           <li>
+           <h4 class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">
+                     <Link className="link" to="/meetingsCalender">
+             <h1>عرض الاجتماعات</h1>
+           </Link></h4>
+           </li>
            </ul>
                  </div>
                  

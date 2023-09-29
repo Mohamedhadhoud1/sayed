@@ -22,6 +22,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import NotFound from "./pages/NotFound";
 import FakeStudents from "./pages/FakeStudents";
 import Meetings from "./pages/Meetings";
+import MeetingsCalender from "./pages/MeetingsCalender";
 
 const Layout = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/meetings",
         element: <Meetings/>,
+      },
+      {
+        path: "/meetingsCalender",
+        element: <MeetingsCalender/>,
       },
      
     ],
