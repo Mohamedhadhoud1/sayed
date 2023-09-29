@@ -1,18 +1,18 @@
 import express from "express";
 import {
-  addPost,
-  deletePost,
+  addletrature,
+  deleteletrature,
   getletratures,
   getletrature,
-  updatePost,
+  updateletrature,
 } from "../controllers/letrature.js";
 
 const router = express.Router();
 
 router.get("/", getletratures);
 router.get("/:id/:grade", getletrature);
-router.post("/", addPost);
-router.delete("/:id", deletePost);
-router.put("/:id", updatePost);
+router.post("/", addletrature);
+router.delete("/:id", deleteletrature);
+router.put("/:id", updateletrature);
 
 export default router;

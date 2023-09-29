@@ -2,9 +2,9 @@ import  db from "../db.js";
 import jwt from "jsonwebtoken";
 
 
-export const getgrammers = (req, res) => {
+export const getmeetings = (req, res) => {
   const grade = req.query.grade;
-  const q = "SELECT * FROM grammer WHERE grade = ? "
+  const q = "SELECT * FROM meetings WHERE grade = ? "
    
   db.query(q, grade, (err, data) => {
     if (err) return res.status(500).send(err);
@@ -13,8 +13,8 @@ export const getgrammers = (req, res) => {
   });
 };
 
-export const getgrammer = (req, res) => {
-  const q = "SELECT * FROM grammer WHERE id = ? AND grade = ?"
+export const getmeeting = (req, res) => {
+  const q = "SELECT * FROM meetings WHERE id = ? AND grade = ?"
   db.query(q, [req.params.id,req.params.grade], (err, data) => {
     if (err) return res.status(500).json(err);
 
@@ -22,7 +22,7 @@ export const getgrammer = (req, res) => {
   });
 };
 
-export const addgrammer = (req, res) => {
+export const addmeeting = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -30,26 +30,23 @@ export const addgrammer = (req, res) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
     const q =
-      "INSERT INTO grammer(`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?)";
+      "INSERT INTO meetings(`title`, `url`, `date`,`grade`) VALUES (?)";
 
     const values = [
       req.body.title,
-      req.body.desc,
-      req.body.imgurl,
-      req.body.videourl,
-      req.body.pdfurl,
-      req.body.quiz,
+      req.body.url,
+      req.body.date,
       req.body.grade
     ];
 
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
-      return res.json("grammer has been created.");
+      return res.json("meetings has been created.");
     });
   // });
 };
 
-export const deletegrammer = (req, res) => {
+export const deletemeeting = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -57,17 +54,17 @@ export const deletegrammer = (req, res) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
     //const postId = req.params.id;
-    const q = "DELETE FROM grammer WHERE id = ? ";
+    const q = "DELETE FROM meetings WHERE id = ? ";
 
     db.query(q, req.params.id, (err, data) => {
       if (err) return res.status(403).json("post not deleted!");
 
-      return res.json("grammer has been deleted!");
+      return res.json("meetings has been deleted!");
     });
   // });
 };
 
-export const updategrammer = (req, res) => {
+export const updatemeeting = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -76,21 +73,18 @@ export const updategrammer = (req, res) => {
 
     const postId = req.params.id;
     const q =
-      "UPDATE grammer SET (`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?) WHERE `id` = ?";
+      "UPDATE meetings SET (`title`, `url`, `date`,`grade`) VALUES (?) WHERE `id` = ?";
 
       const values = [
         req.body.title,
-        req.body.desc,
-        req.body.imgurl,
-        req.body.videourl,
-        req.body.pdfurl,
-        req.body.quiz,
+        req.body.url,
+        req.body.date,
         req.body.grade
       ];
   
     db.query(q, [...values, postId], (err, data) => {
       if (err) return res.status(500).json(err);
-      return res.json("grammer has been updated.");
+      return res.json("meetings has been updated.");
     });
   // });
 };

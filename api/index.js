@@ -5,6 +5,9 @@ import authRoutes from "./routes/auth.js";
 import lessonsRoutes from "./routes/lessons.js";
 import letratureRoutes from "./routes/letrature.js";
 import letRoutes from "./routes/let.js";
+import grammerRoutes from "./routes/grammer.js";
+import storyRoutes from "./routes/story.js";
+import meetingsRoutes from "./routes/meetings.js";
 import studentsRoutes from "./routes/students.js";
 import cookieParser from "cookie-parser";
 const app = express()
@@ -25,7 +28,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/lessons", lessonsRoutes);
 app.use("/api/letrature", letratureRoutes);
 app.use("/api/let", letRoutes);
- 
+app.use("/api/grammer", grammerRoutes);
+app.use("/api/story", storyRoutes);
+app.use("/api/meetings", meetingsRoutes);
+
 
 /*
 //GET

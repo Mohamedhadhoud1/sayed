@@ -2,9 +2,9 @@ import  db from "../db.js";
 import jwt from "jsonwebtoken";
 
 
-export const getgrammers = (req, res) => {
+export const getstories = (req, res) => {
   const grade = req.query.grade;
-  const q = "SELECT * FROM grammer WHERE grade = ? "
+  const q = "SELECT * FROM story WHERE grade = ? "
    
   db.query(q, grade, (err, data) => {
     if (err) return res.status(500).send(err);
@@ -13,8 +13,8 @@ export const getgrammers = (req, res) => {
   });
 };
 
-export const getgrammer = (req, res) => {
-  const q = "SELECT * FROM grammer WHERE id = ? AND grade = ?"
+export const getstory = (req, res) => {
+  const q = "SELECT * FROM story WHERE id = ? AND grade = ?"
   db.query(q, [req.params.id,req.params.grade], (err, data) => {
     if (err) return res.status(500).json(err);
 
@@ -22,7 +22,7 @@ export const getgrammer = (req, res) => {
   });
 };
 
-export const addgrammer = (req, res) => {
+export const addstory = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -30,7 +30,7 @@ export const addgrammer = (req, res) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
     const q =
-      "INSERT INTO grammer(`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?)";
+      "INSERT INTO story(`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?)";
 
     const values = [
       req.body.title,
@@ -44,12 +44,12 @@ export const addgrammer = (req, res) => {
 
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
-      return res.json("grammer has been created.");
+      return res.json("story has been created.");
     });
   // });
 };
 
-export const deletegrammer = (req, res) => {
+export const deletestory = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -57,17 +57,17 @@ export const deletegrammer = (req, res) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
     //const postId = req.params.id;
-    const q = "DELETE FROM grammer WHERE id = ? ";
+    const q = "DELETE FROM story WHERE id = ? ";
 
     db.query(q, req.params.id, (err, data) => {
       if (err) return res.status(403).json("post not deleted!");
 
-      return res.json("grammer has been deleted!");
+      return res.json("story has been deleted!");
     });
   // });
 };
 
-export const updategrammer = (req, res) => {
+export const updatestory = (req, res) => {
   // const token = req.cookies.access_token;
   // if (!token) return res.status(401).json("Not authenticated!");
 
@@ -76,7 +76,7 @@ export const updategrammer = (req, res) => {
 
     const postId = req.params.id;
     const q =
-      "UPDATE grammer SET (`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?) WHERE `id` = ?";
+      "UPDATE story SET (`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?) WHERE `id` = ?";
 
       const values = [
         req.body.title,
@@ -90,7 +90,7 @@ export const updategrammer = (req, res) => {
   
     db.query(q, [...values, postId], (err, data) => {
       if (err) return res.status(500).json(err);
-      return res.json("grammer has been updated.");
+      return res.json("story has been updated.");
     });
   // });
 };

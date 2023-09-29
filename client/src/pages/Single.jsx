@@ -47,13 +47,13 @@ const Single = (props) => {
     <div>
     </div>
     <div className='my-32 text-center'>
-            <iframe class="block mx-auto" src="https://drive.google.com/file/d/1komu_ApIBEw1pecwMUY5rSJCmQ6DdH-2/preview" width="90%" height="800" allow="autoplay"></iframe> </div>
+            <iframe class="block mx-auto" src={post.pdfurl} width="90%" height="800" allow="autoplay"></iframe> </div>
             
     <div className='m-auto text-center'>
-            <iframe class="block mx-auto bg-blue-200" src="https://docs.google.com/forms/d/e/1FAIpQLSdPuO3vxZhsNE1NEKXfpyiyROqHMx4AcNvtQrj6m1gz_Y9abA/viewform?embedded=true" width="90%" height="700" frameborder="0">جارٍ التحميل…</iframe>
+            <iframe class="block mx-auto bg-blue-200" src={post.quiz} width="90%" height="700" frameborder="0">جارٍ التحميل…</iframe>
             </div>
            
-    <Video lessontitle={props.lessontitle}/>
+    <Video lessontitle={props.lessontitle} url={post.videourl}/>
     </>
   )
 }

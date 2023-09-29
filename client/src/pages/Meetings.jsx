@@ -52,8 +52,12 @@ const Meetings = () => {
                       <input type="text" name="title" id="title"  onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
                   </div>
                   <div>
-                      <label for="desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">موعد الاجتماع</label>
-                      <input type="datetime-local" name="desc" id="desc"  onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
+                      <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رابط الاجتماع</label>
+                      <input type="text" name="url" id="url"  onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
+                  </div>
+                  <div>
+                      <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">موعد الاجتماع</label>
+                      <input type="datetime-local" name="date" id="date"  onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
                   </div>
                   
                   <div>

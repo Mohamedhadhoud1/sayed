@@ -1,18 +1,18 @@
 import express from "express";
 import {
-  addPost,
-  deletePost,
+  addlet,
+  deletelet,
   getlets,
   getlet,
-  updatePost,
+  updatelet,
 } from "../controllers/let.js";
 
 const router = express.Router();
 
 router.get("/", getlets);
 router.get("/:id/:grade", getlet);
-router.post("/", addPost);
-router.delete("/:id", deletePost);
-router.put("/:id", updatePost);
+router.post("/", addlet);
+router.delete("/:id", deletelet);
+router.put("/:id", updatelet);
 
 export default router;
