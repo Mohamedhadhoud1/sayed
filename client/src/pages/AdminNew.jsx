@@ -4,7 +4,13 @@ import { useState } from 'react';
 import axios from "axios";
 
 const AdminNew = () => {
-    const [inputs, setInputs] = useState({
+  const navigate = useNavigate();
+  const location = useLocation()
+  //console.log(inputs,"location")
+  
+  const { post ,type} = location.state!=null? location.state :{}
+ 
+    const [inputs, setInputs] = useState(location.state==null?{
         title: "",
         desc: "",
         pdfurl: "",
@@ -13,17 +19,13 @@ const AdminNew = () => {
         quiz:"",
         grade:""
         
-      });
+      }:post);
       const[Type,setType]=useState();
       const [err, setError] = useState(null);
     
-      const navigate = useNavigate();
-      const location = useLocation()
-      //console.log(inputs,"location")
-      
-      const { post ,type} = location.state!=null? location.state :{}
-     
+    
       const handleChange = (e) => {
+        
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
        
         console.log(inputs);
@@ -40,7 +42,7 @@ const AdminNew = () => {
         e.preventDefault();
         if(location.state!=null){
           try {
-            const res= await axios.put(`https://sayed.onrender.com/api/${type}/${post.id}`, [inputs]);
+            const res= await axios.put(`https://sayed.onrender.com/api/${type}/${post.id}`, inputs);
              navigate("/Admin");
              console.log(res);
            } catch (err) {

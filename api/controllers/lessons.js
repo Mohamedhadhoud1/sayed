@@ -76,7 +76,7 @@ export const updatelesson = (req, res) => {
 
     
     const q =
-      "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = 8";
+      "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = ?";
 
       const values = [
         req.body.title,
@@ -88,7 +88,7 @@ export const updatelesson = (req, res) => {
         req.body.grade
       ];
   
-    db.query(q, [...values], (err, data) => {
+    db.query(q, [...values,req.params.id], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("lesson has been updated.");
     });

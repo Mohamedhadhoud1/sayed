@@ -71,9 +71,9 @@ export const updatemeeting = (req, res) => {
   // jwt.verify(token, "jwtkey", (err, userInfo) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
-    const postId = req.params.id;
+    
     const q =
-      "UPDATE meetings SET (`title`, `url`, `date`,`grade`) VALUES (?) WHERE `id` = ?";
+      "UPDATE meetings SET `title`=?, `url`=?, `date`=?,`grade`=?  WHERE `id` = ?";
 
       const values = [
         req.body.title,
@@ -82,7 +82,7 @@ export const updatemeeting = (req, res) => {
         req.body.grade
       ];
   
-    db.query(q, [...values, postId], (err, data) => {
+    db.query(q, [...values, req.params.id], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("meetings has been updated.");
     });

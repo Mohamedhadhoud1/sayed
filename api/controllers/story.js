@@ -74,23 +74,22 @@ export const updatestory = (req, res) => {
   // jwt.verify(token, "jwtkey", (err, userInfo) => {
   //   if (err) return res.status(403).json("Token is not valid!");
 
-    const postId = req.params.id;
-    const q =
-      "UPDATE story SET (`title`, `desc`, `imgurl`, `videourl`, `pdfurl`,`quiz`,`grade`) VALUES (?) WHERE `id` = ?";
+  const q =
+  "UPDATE lessons SET `title`=?, `desc`=?, `imgurl`=?, `videourl`=?, `pdfurl`=?,`quiz`=?,`grade`=? WHERE `id` = ?";
 
-      const values = [
-        req.body.title,
-        req.body.desc,
-        req.body.imgurl,
-        req.body.videourl,
-        req.body.pdfurl,
-        req.body.quiz,
-        req.body.grade
-      ];
-  
-    db.query(q, [...values, postId], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.json("story has been updated.");
-    });
+  const values = [
+    req.body.title,
+    req.body.desc,
+    req.body.imgurl,
+    req.body.videourl,
+    req.body.pdfurl,
+    req.body.quiz,
+    req.body.grade
+  ];
+
+db.query(q, [...values,req.params.id], (err, data) => {
+  if (err) return res.status(500).json(err);
+  return res.json("lesson has been updated.");
+});
   // });
 };
