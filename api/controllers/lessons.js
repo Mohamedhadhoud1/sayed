@@ -88,7 +88,7 @@ export const updatelesson = (req, res) => {
         req.body.grade
       ];
   
-    db.query(q, [...values, req.params.id], (err, data) => {
+    db.query(q, [...values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("lesson has been updated.");
     });
