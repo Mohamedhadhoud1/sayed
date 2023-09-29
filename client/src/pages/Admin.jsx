@@ -194,7 +194,7 @@ const handleSubmit = async (e) => {
            </Link></h4>
                  </div>
                 
-                     <button type="submit" onClick={()=>handleDelete(post.id)} class="bg-blue-900 m-2 px-2 py-1 mt-6 text-white">حذف</button>
+                     <button type="submit" onClick={()=>handleDelete(post.id)} class="bg-red-600 m-2 px-2 py-1 mt-6 text-white">حذف</button>
              
                  </div>
          </div>
