@@ -17,7 +17,7 @@ const MeetingsCalender = () => {
             console.log(err);
           }
         };
-        fetchData();
+        //fetchData();
         console.log("res.data")
    
   return (

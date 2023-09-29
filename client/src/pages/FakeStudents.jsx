@@ -52,7 +52,7 @@ const FakeStudents = () => {
       const handleAdd = async (student)=>{
           try {
            const res= await axios.post("https://sayed.onrender.com/api/auth/Register", {
-            userName:student.userName,
+            userName:student.username,
             email:student.email,
             password:student.password,
             grade:student.grade,

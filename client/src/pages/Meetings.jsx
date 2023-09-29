@@ -8,7 +8,8 @@ const Meetings = () => {
         title: "",
         url:"",
         grade:"",
-        startDate:ins
+        date:"",
+       // endDate:""
       });
       const [err, setError] = useState(null);
     

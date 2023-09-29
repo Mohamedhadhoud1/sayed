@@ -11,28 +11,36 @@ const AdminNew = () => {
         imgurl:"",
         videourl:"",
         quiz:"",
-        grade:"",
-        type:""
+        grade:""
+        
       });
+      const[Type,setType]=useState();
       const [err, setError] = useState(null);
     
       const navigate = useNavigate();
       const location = useLocation()
-      console.log(location,"location")
+      //console.log(inputs,"location")
       
       const { post ,type} = location.state!=null? location.state :{}
      
       const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+       
         console.log(inputs);
       };
+      const handleChangetype = (e) => {
+        setType({[e.target.name]: e.target.value });
+       
+        console.log(Type);
+      };
+
     
       const handleSubmit = async (e) => {
         console.log("res");
         e.preventDefault();
         if(location.state!=null){
           try {
-            const res= await axios.put(`https://sayed.onrender.com/api/${inputs.type}`, inputs);
+            const res= await axios.put(`https://sayed.onrender.com/api/${type}/${post.id}`, [inputs,post.id]);
              navigate("/Admin");
              console.log(res);
            } catch (err) {
@@ -66,14 +74,15 @@ const AdminNew = () => {
                   أضف درس جديد
               </h1>}
               
-              {err && <p className='text-red-600 text-center'>{err}</p>}
+              {err && <p className='text-red-600 text-center'>{err.toString()}</p>}
               <form class="space-y-4 md:space-y-6" onSubmit={(e) => handleSubmit(e)}>
+              {location.state!=null?
+              null:
               <div>
                       <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نوع الدرس</label>
-                      {location.state!=null?
-                      <input type="text" disabled name="type" id="type" value={type} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
-                      :
-                      <select onChange={handleChange} name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                      
+                      
+                      <select onChange={handleChangetype} name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                       <option value="" hidden>اختر نوع الدرس</option>
                        <option value="lessons">قراءة</option>
                        <option value="letrature">نصوص</option>
@@ -82,31 +91,31 @@ const AdminNew = () => {
                        <option value="eloquence">بلاغة</option>
                        <option value="story">قصة</option>
                      </select>
-                     }
-                      </div> 
+                     
+                      </div> }
               <div>
                       <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">العنوان</label>
-                      <input type="text" name="title" id="title" value={post?.title} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
+                      <input type="text" name="title" id="title"  defaultValue={post?.title} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
                   </div>
                   <div>
                       <label for="desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الوصف</label>
-                      <input type="text" name="desc" id="desc"  value={post?.desc} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
+                      <input type="text" name="desc" id="desc"  defaultValue={post?.desc} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required/>
                   </div>
                   <div>
                       <label for="pdfurl" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> PDFرابط ال</label>
-                      <input type="text" name="pdfurl" id="pdfurl"  value={post?.pdfurl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
+                      <input type="text" name="pdfurl" id="pdfurl"  defaultValue={post?.pdfurl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
                  </div>
                   <div>
                       <label for="imgurl" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رابط الصورة</label>
-                      <input type="text" name="imgurl" id="imgurl"  value={post?.imgurl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
+                      <input type="text" name="imgurl" id="imgurl"  defaultValue={post?.imgurl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
                  </div>
                  <div>
                       <label for="videourl" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رابط الفيديو</label>
-                      <input type="text" name="videourl" id="videourl"  value={post?.videourl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
+                      <input type="text" name="videourl" id="videourl"  defaultValue={post?.videourl} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
                  </div>
                  <div>
                       <label for="quiz" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رابط الاسئلة</label>
-                      <input type="text" name="quiz" id="quiz"  value={post?.quiz} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                      <input type="text" name="quiz" id="quiz"  defaultValue={post?.quiz} onChange={handleChange} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                   </div>
                   <div>
                       <label for="grade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الصف</label>
