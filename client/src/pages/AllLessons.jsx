@@ -2,47 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
-// const posts = [
-//   {
-//     id: 1,
-//     title: "درس كذا كذا",
-//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-//   {
-//     id: 2,
-   
-//     title: "درس كذا كذا",
-//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-//   {
-//     id: 3,
-//     title: "درس كذا كذا",
-//     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-// {
-//   id: 1,
-//   title: "درس كذا كذا",
-//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-// {
-//   id: 2,
- 
-//   title: "درس كذا كذا",
-//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-// {
-//   id: 3,
-//   title: "درس كذا كذا",
-//   desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-//   img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-// },
-  
-// ];
+
 
 const AllLessons = (props) => {
   const [posts, setPosts] = useState([]);

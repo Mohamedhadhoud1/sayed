@@ -1,33 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
-const posts = [
-      {
-        id: 1,
-        title: "درس كذا كذا",
-        desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-        img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-      {
-        id: 2,
-       
-        title: "درس كذا كذا",
-        desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-        img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-      {
-        id: 3,
-        title: "درس كذا كذا",
-        desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque",
-        img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-      
-    ];
-    const getText = (html) =>{
-        const doc = new DOMParser().parseFromString(html, "text/html")
-        return doc.body.textContent
-      }
+import { AuthContext } from "../context/authContext";
+import axios from "axios";
+   
     
 const Lessons = (props) => {
+  const [posts, setPosts] = useState([]);
+
+
+  const { currentUser, logout } = useContext(AuthContext);
+  const grade = currentUser.grade;
+  console.log(grade);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`https://sayed.onrender.com/api/${props.api}`, {params: { grade: grade }});
+        setPosts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [grade,props.api]);
   return (
     <>
    <section id="popular-courses " class="courses my-20 mx-3  sm:mx-32">
@@ -37,8 +31,9 @@ const Lessons = (props) => {
                 <h2 class="text-gray-400">{props.lessons}</h2>
                 <p class="font-bold text-2xl mb-3 "> {props.imoprtantLessons} </p>
             </div>
+            {posts.length==0? <p className='text-xl font-bold text-green-600 mt-10 text-center'>سيتم إضافتها لاحقا</p>:
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-12 w-full aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-    {posts.map((post) => (
+    {posts.slice(0,3).map((post) => (
         <div class="border-gray-100 bordert w-full shadow-sm rounded-sm"  key={post.id}>
         <div class="course-item">
             <img src={`${post.img}`} class="w-full h-60" alt="lessonimg"
@@ -68,6 +63,7 @@ const Lessons = (props) => {
         
     ))}
   </div>
+}
   </div>
 
     </section>

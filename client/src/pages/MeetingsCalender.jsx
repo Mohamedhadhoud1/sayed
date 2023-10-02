@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useContext,useCallback } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import axios from "axios";
@@ -7,23 +7,27 @@ import { AuthContext } from '../context/authContext';
 const localizer = momentLocalizer(moment)
 
 const MeetingsCalender = () => {
+  
     const [events,setEvents]=useState([]);
     const { currentUser, logout } = useContext(AuthContext);
-   let len = events.length;
+    const [grade,setGrade]=useState();
+
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`https://sayed.onrender.com/api/meetings`, { params: { grade:grade } });
+        setEvents(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     useEffect(() => {
       console.log('Fetching data...');
-      const fetchData = async () => {
-        try {
-          const res = await axios.get(`https://sayed.onrender.com/api/meetings`, { params: { grade: 12 } });
-          setEvents(prevEvents => [...prevEvents, ...res.data]);
-          console.log(res.data);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+      
   
-     // fetchData();
-    }, useCallback(opts => dispatch(actions.events(opts)),[events.length]));
+      fetchData();
+    },[grade]);
         console.log("res.data")
    
         // function formatDate(date) {
@@ -41,12 +45,18 @@ const MeetingsCalender = () => {
           try {
             await axios.delete(`https://sayed.onrender.com/api/meetings/${id}`);
             alert("تم حذف الاجتماع بنجاح")
+            fetchData();
           } catch (err) {
             console.log(err);
             alert(err.response.data)
           }
         }
-
+        const handleChange = (e) => {
+          setGrade(e.target.value);
+         
+          console.log(grade);
+          //fetchData()
+        };
 
   return (
     <section class="bg-white dark:bg-gray-900 antialiased">
@@ -58,7 +68,18 @@ const MeetingsCalender = () => {
   
        
       </div>
-  
+      <div>
+                      <label for="grade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الصف</label>
+                       <select onChange={(e)=>handleChange(e)}   name="grade" id="grade" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                           <option value="" hidden>اختر الصف</option>
+                           <option value="7">الصف الأول الإعدادي</option>
+                           <option value="8">الصف الثاني الإعدادي</option>
+                           <option value="9">الصف الثالث الإعدادي</option>
+                           <option value="10">الصف الأول الثانوي</option>
+                           <option value="11">الصف الثاني الثانوي</option>
+                           <option value="12">الصف الثالث الثانوي</option>
+                         </select></div> 
+  {events.length==0? <p className='text-xl font-bold text-red-600 mt-10 text-center'>لا يوجد اجتماعات</p>:
       <div class="flow-root max-w-3xl mx-auto mt-8 sm:mt-12 lg:mt-16">
         <div class="-my-4 divide-y divide-gray-200 dark:divide-gray-700">
           {events.map((event)=>(
@@ -66,7 +87,9 @@ const MeetingsCalender = () => {
          
           <div class="flex flex-col gap-2 py-4 sm:gap-6 sm:flex-row sm:items-center justify-between text-center">
             <p class="w-80 text-lg font-normal text-gray-500 sm:text-right dark:text-gray-400 shrink-0">
-             {new Date(event.date).toLocaleString('ar',{timeZone:"UTC"})}
+             {new Date(event.date).toLocaleString('ar',{timeZone:"UTC",weekday:'long',year: "numeric",
+  month: "long",
+  day: "numeric",hour12: true,hour:"numeric",minute:"numeric" })}
             </p>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
               <a href={event.url} class="hover:underline">{event.title} 
@@ -88,6 +111,7 @@ const MeetingsCalender = () => {
           
         </div>
       </div>
+      }
     </div>
   </section>
   )
