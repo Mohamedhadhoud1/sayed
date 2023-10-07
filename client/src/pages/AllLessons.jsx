@@ -33,9 +33,9 @@ const AllLessons = (props) => {
              </div>
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-12 w-full aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
      {posts.map((post) => (
-         <div class="border-gray-100 bordert w-full shadow-sm rounded-sm show-on-scroll"  key={post.id}>
+         <div class="border-gray-100 bordert w-60 shadow-sm rounded-sm show-on-scroll"  key={post.id}>
          <div class="course-item">
-             <img src={`${post.imgurl?post.imgurl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt61taF-Xs1cypQtAi1n4iO_FfbaZjDdiOdQ&usqp=CAU"}`} class="w-40 h-60" alt="lessonimg"
+             <img src={`${post.imgurl?post.imgurl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt61taF-Xs1cypQtAi1n4iO_FfbaZjDdiOdQ&usqp=CAU"}`} class="w-60 h-60" alt="lessonimg"
                  data-pagespeed-url-hash="3708496358"
                  onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/>
              <div class="course-content">
@@ -45,7 +45,7 @@ const AllLessons = (props) => {
              <h1>{post.title}</h1>
            </h4>
                  </div>
-                 <p class="text-gray-600 text-sm p-2">
+                 <p class="text-gray-600 text-sm p-2 whitespace-nowrap text-ellipsis overflow-clip">
                      {post.desc }
                  </p>
              </div>
