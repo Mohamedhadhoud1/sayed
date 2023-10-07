@@ -9,6 +9,7 @@ import grammerRoutes from "./routes/grammer.js";
 import storyRoutes from "./routes/story.js";
 import meetingsRoutes from "./routes/meetings.js";
 import studentsRoutes from "./routes/students.js";
+import eloquenceRoutes from "./routes/eloquence.js";
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -31,6 +32,7 @@ app.use("/api/let", letRoutes);
 app.use("/api/grammer", grammerRoutes);
 app.use("/api/story", storyRoutes);
 app.use("/api/meetings", meetingsRoutes);
+app.use("/api/eloquence", eloquenceRoutes);
 
 
 /*

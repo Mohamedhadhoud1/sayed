@@ -60,15 +60,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/بلاغة",
-        element: <AllLessons title="البلاغة"/>,
+        element: <AllLessons title="البلاغة" api="eloquence"/>,
       },
       {
         path: "/نحو",
-        element: <AllLessons title="النحو"/>,
+        element: <AllLessons title="النحو" api="grammer"/>,
       },
       {
         path: "/قصة",
-        element: <AllLessons title="القصة"/>,
+        element: <AllLessons title="القصة" api="story"/>,
       },
       {
         path: "/القراءة/:id",
@@ -84,15 +84,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/البلاغة/:id",
-        element: <Single  lessontitle="شرح البلاغة"/>,
+        element: <Single  lessontitle="شرح البلاغة" api="eloquence"/>,
       },
       {
         path: "/النحو/:id",
-        element: <Single  lessontitle="شرح النحو"/>,
+        element: <Single  lessontitle="شرح النحو" api="grammer"/>,
       },
       {
         path: "/القصة/:id",
-        element: <Single  lessontitle="شرح القصة"/>,
+        element: <Single  lessontitle="شرح القصة"  api="story"/>,
       },
       {
         path: "/admin",

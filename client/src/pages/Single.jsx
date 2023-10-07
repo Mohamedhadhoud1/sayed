@@ -54,7 +54,7 @@ const Single = (props) => {
     </div>
     {post.pdfurl=="" || post.videourl==null ? null: 
     <div className='my-32 text-center'>
-            <iframe class="block mx-auto" src={post.pdfurl? post.pdfurl.match(/"([^"]+)"/)[1]:""} width="90%" height="800" allow="autoplay"></iframe> 
+            <iframe class="block mx-auto" src={post.pdfurl? post.pdfurl.match(/"([^"]+)"/)[0]:""} width="90%" height="800" allow="autoplay"></iframe> 
             </div>}
     {post.quiz=="" || post.videourl==null ? null:    
     <div className='m-auto text-center mb-12'>
