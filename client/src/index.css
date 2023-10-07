@@ -54,3 +54,12 @@ body{
     margin: 20px 0;
     display: inline-block;}
 	.contant_box_404{ margin-top:-50px;}
+
+  .show-on-scroll {
+    opacity: 0.1;
+    transition: all 2.5s ease;
+  }
+  
+  .show-on-scroll.is-visible {
+    opacity: 1;
+  }

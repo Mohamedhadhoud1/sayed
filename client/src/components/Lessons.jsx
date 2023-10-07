@@ -34,9 +34,9 @@ const Lessons = (props) => {
             {posts.length==0? <p className='text-xl font-bold text-green-600 mt-10 text-center'>سيتم إضافتها لاحقا</p>:
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-12 w-full aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
     {posts.slice(0,3).map((post) => (
-        <div class="border-gray-100 bordert w-full shadow-sm rounded-sm"  key={post.id}>
+        <div class="border-gray-100 bordert w-full shadow-sm rounded-sm show-on-scroll " key={post.id}>
         <div class="course-item">
-            <img src={`${post.img}`} class="w-full h-60" alt="lessonimg"
+            <img src={`${post.img}`} class="w-full h-60" alt="lessonimg"  
                 data-pagespeed-url-hash="3708496358"
                 onload="pagespeed.CriticalImages.checkImageForCriticality(this);"/>
             <div class="course-content">

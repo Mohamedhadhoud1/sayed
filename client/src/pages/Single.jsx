@@ -46,19 +46,19 @@ const Single = (props) => {
     <>
     
     <div className='text-center m-10'>
-      <img src={`${post.imgurl}`} class="w-96 h-96 m-auto" alt="lessonimg" />
-      <h2>{post.title}</h2>
+      <img src={`${post.imgurl?post.imgurl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt61taF-Xs1cypQtAi1n4iO_FfbaZjDdiOdQ&usqp=CAU"}`} class="w-96 h-96 m-auto" alt="lessonimg" />
+      <h2 className='font-bold mb-3 text-xl'>{post.title}</h2>
       <p>{post.desc}</p>
     </div>
     <div>
     </div>
     {post.pdfurl=="" || post.videourl==null ? null: 
     <div className='my-32 text-center'>
-            <iframe class="block mx-auto" src={post.pdfurl? post.pdfurl.match(/"([^"]+)"/)[0]:""} width="90%" height="800" allow="autoplay"></iframe> 
+            <iframe class="block mx-auto show-on-scroll" src={post.pdfurl? post.pdfurl.match(/"([^"]+)"/)[1]:""} width="90%" height="800" allow="autoplay"></iframe> 
             </div>}
     {post.quiz=="" || post.videourl==null ? null:    
     <div className='m-auto text-center mb-12'>
-            <iframe class="block mx-auto bg-blue-200" src={post.quiz? post.quiz.match(/"([^"]+)"/)[1]:""} width="90%" height="700" frameborder="0">جارٍ التحميل…</iframe>
+            <iframe class="block mx-auto bg-blue-200 show-on-scroll" src={post.quiz? post.quiz.match(/"([^"]+)"/)[1]:""} width="90%" height="700" frameborder="0">جارٍ التحميل…</iframe>
     </div>}
         {post.videourl=="" || post.videourl==null ? null:
     <Video lessontitle={props.lessontitle} url={post.videourl}/>
